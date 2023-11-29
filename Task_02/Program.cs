@@ -2,54 +2,35 @@
 // причём X ≠ 0 и Y ≠ 0 и выдаёт номер координатной четверти плоскости,
 // в которой находится эта точка.
 
-using System;
+Console.Write("Введите координату X: ");
+double x = double.Parse(Console.ReadLine());
 
-class Program
+Console.Write("Введите координату Y: ");
+double y = double.Parse(Console.ReadLine());
+
+if (x == 0 || y == 0)
 {
-   static void Main()
-   {
-      Console.WriteLine("Введите координаты точки (X и Y):");
-
-      Console.Write("X: ");
-      if (double.TryParse(Console.ReadLine(), out double x))
-      {
-         Console.Write("Y: ");
-         if (double.TryParse(Console.ReadLine(), out double y))
-         {
-            DetermineQuadrant(x, y);
-         }
-         else
-         {
-            Console.WriteLine("Некорректный ввод для Y. Пожалуйста, введите числовое значение.");
-         }
-      }
-      else
-      {
-         Console.WriteLine("Некорректный ввод для X. Пожалуйста, введите числовое значение.");
-      }
-   }
-
-   static void DetermineQuadrant(double x, double y)
-   {
-      if (x > 0 && y > 0)
-      {
-         Console.WriteLine("Точка находится в первой координатной четверти.");
-      }
-      else if (x < 0 && y > 0)
-      {
-         Console.WriteLine("Точка находится во второй координатной четверти.");
-      }
-      else if (x < 0 && y < 0)
-      {
-         Console.WriteLine("Точка находится в третьей координатной четверти.");
-      }
-      else if (x > 0 && y < 0)
-      {
-         Console.WriteLine("Точка находится в четвёртой координатной четверти.");
-      }
-      else
-      {
-         Console.WriteLine("Точка находится на координатной оси.");
-      }
-   }
+   Console.WriteLine("Точка не должна лежать на осях. Пожалуйста, введите другие координаты.");
+   return;
 }
+
+int quadrant;
+
+if (x > 0 && y > 0)
+{
+   quadrant = 1;
+}
+else if (x < 0 && y > 0)
+{
+   quadrant = 2;
+}
+else if (x < 0 && y < 0)
+{
+   quadrant = 3;
+}
+else
+{
+   quadrant = 4;
+}
+
+Console.WriteLine($"Точка с координатами ({x}, {y}) находится в {quadrant}-й координатной четверти.");
